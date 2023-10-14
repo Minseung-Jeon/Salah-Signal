@@ -8,3 +8,11 @@ async function fetchData() {
     document.getElementById("Isha").innerHTML = record.data.timings.Isha;
 }
 fetchData();
+
+document.addEventListener("DOMContentLoaded", function () {
+    const prayerButton = document.getElementById("prayerButton");
+  
+    prayerButton.addEventListener("click", function () {
+      chrome.tabs.create({ url: "timer.html" });
+    });
+  });
