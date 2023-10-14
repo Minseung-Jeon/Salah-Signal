@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>salah signal</title>
-    <link rel="stylesheet" type="text/css" href="popup.css">
+    <title>Salah Signal</title>
+    <button type="button" id="settings"><a href="options.html">Settings</a></button>
+    <script src="popup.js"></script>
+    <meta charset="utf-8">
 </head>
 <body>
-    <div id="popup-container">
-        <h1>Salah Signal</h1>
-        <label for="location">Location for Prayer Times:</label>
-        <input type="text" id="location">
-        <label for="start-time">Start Time for Website Block:</label>
-        <input type="time" id="start-time">
-        <label for="end-time">End Time for Website Block:</label>
-        <input type="time" id="end-time">
-        <button id="save-settings">Save Settings</button>
-        <div id="status"></div>
+    <div id="prayerTimes"></div>
+    <div class="container mt-3" style="width: 450px;">
+        <h2 class="text-center">Prayer Timings</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Fajr</th>
+                <th id="Fajr"></th>
+            </tr>
+            <tr>
+                <th>Dhuhr</th>
+                <th id="Dhuhr"></th>
+            </tr>
+            <tr>
+                <th>Asr</th>
+                <th id="Asr"></th>
+            </tr>
+            <tr>
+                <th>Maghrib</th>
+                <th id="Maghrib"></th>
+            </tr>
+            <tr>
+                <th>Isha'a</th>
+                <th id="Isha"></th>
+                <th><button type="button" id="button"><a href="redirect.html">new tab</a></button> </th>
+            </tr>
+            </thead>
+        </table>
     </div>
     <script src="popup.js"></script>
+    
+  
 </body>
+
 </html>
 
