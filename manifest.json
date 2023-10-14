@@ -1,0 +1,25 @@
+{
+    "manifest_version": 3,
+    "name": "Salah Signal",
+    "description": "Never miss a prayer again...",
+    "version": "1.0",
+    "icons": {
+      "16": "images/icon-16.ico",
+      "32": "images/icon-32.ico",
+      "48": "images/icon-48.ico",
+      "128": "images/icon-128.ico"
+    },
+    
+      "page_action": 
+        {
+          "default_icon": {
+            "16": "images/icon-16.ico",
+            "32": "images/icon-32.ico",
+            "48": "images/icon-48.ico",
+            "128": "images/icon-128.ico"
+          }
+        },
+        "content_scripts": [{}]
+      
+    }
+  
