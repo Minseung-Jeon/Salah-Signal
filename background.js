@@ -29,7 +29,9 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
       // If not whitelisted, check prayer times and redirect if needed
       if (!isWhitelisted) {
-        try {
+        const redirectionURL = chrome.runtime.getURL("redirect.html");
+        chrome.tabs.update(tabId, {url: redirectionURL});
+        /* try {
           const prayerTimesResponse = await fetchPrayerTimes("Scarborough", "Canada", 2);
           const currentPrayer = getCurrentPrayer(prayerTimesResponse.data.timings);
 
@@ -52,7 +54,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
           }
         } catch (error) {
           console.error("Error fetching prayer times:", error);
-        }
+        } */
       }
     }
   });

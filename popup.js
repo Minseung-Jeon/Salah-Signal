@@ -9,10 +9,10 @@ async function fetchData() {
 }
 fetchData();
 
-document.addEventListener("DOMContentLoaded", function () {
+/* document.addEventListener("DOMContentLoaded", function () {
     const prayerButton = document.getElementById("prayerButton");
   
     prayerButton.addEventListener("click", function () {
       chrome.tabs.create({ url: "timer.html" });
     });
-  });
+  }); */

@@ -18,14 +18,13 @@ function startTimer(duration, display) {
       } else {
         timer--;
       }
-  
-  
     }, 1000);
   }
   
   window.onload = function () {
-    var durationSeconds = 60;
-    var durationMinutes = 15 * durationSeconds;
+    var durationMinutes = 3;
+    /* var durationSeconds = 60;
+    var durationMinutes = 15 * durationSeconds; */
       display = document.querySelector("#timer");
     startTimer(durationMinutes, display);
   };
