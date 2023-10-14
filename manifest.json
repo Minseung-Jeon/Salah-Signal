@@ -13,7 +13,10 @@
     "action": {
       "default_popup":"index.html",
       "default_title":"Salah Signal"
-    }
-      
+    },
+
+    "permissions": [
+      "geolocation"
+    ]
     }
   
