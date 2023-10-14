@@ -12,11 +12,15 @@
     "author": "Naeem, Min, Ramah, Melanie",
     "action": {
       "default_popup":"index.html",
-      "default_title":"Salah Signal"
+      "default_title":"Salah Signal - Never miss a prayer again..."
     },
-
     "permissions": [
-      "geolocation"
-    ]
+      "geolocation",
+      "notifications"
+    ],
+    "background": {
+      "service_worker":"service-worker.js"
+    },
+    "default_locale": "en"
     }
   
