@@ -1,4 +1,4 @@
-function recursiveFunction() {
+ function recursiveFunction() {
     // Your code here
     console.log("HelloWorld")
     let str_num = "55"
@@ -25,4 +25,19 @@ function recursiveFunction() {
   }
   
   // Start the recursive function initially
-  recursiveFunction();  
+  recursiveFunction();   
+  // Replace 'prayerTime' with the actual time of the prayer in HH:MM format
+const prayerTime = '12:30';
+
+// Convert the prayer time to hours and minutes
+const [prayerHour, prayerMinute] = prayerTime.split(':').map(Number);
+
+// Calculate the end time 15 minutes after the prayer time
+const endHour = prayerHour + Math.floor((prayerMinute + 15) / 60);
+const endMinute = (prayerMinute + 15) % 60;
+
+// Set up the end time in HH:MM format
+const endTime = `${endHour.toString().padStart(2, '0')}:${endMinute.toString().padStart(2, '0')}`;
+
+console.log(`Prayer Time: ${prayerTime}`);
+console.log(`End Time: ${endTime}`);
