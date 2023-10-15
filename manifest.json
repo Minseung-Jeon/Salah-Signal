@@ -19,7 +19,14 @@
       "tabs", "storage","activeTab"   
     ],
     "background":{
-    "service_worker": "background.js",
-    "type": "module"
+      "service_worker":"background.js",
+      "type": "module",
+
+      "workers": [
+        {
+          "entry_module":"timer.js",
+          "type":"module"
+        }
+      ]
     }    
     }

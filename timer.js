@@ -1,45 +1,110 @@
-function startTimer(duration, display) {
-    var startTime = localStorage.getItem('startTime');
-    var remainingTime = localStorage.getItem('remainingTime');
-    if (!startTime || !remainingTime) {
-        startTime = new Date().getTime();
-        remainingTime = duration;
-        localStorage.setItem('startTime', startTime);
-        localStorage.setItem('remainingTime', remainingTime);
-    } else {
-        // Calculate the time that has passed since the timer started
-        var elapsedTime = new Date().getTime() - startTime;
-        remainingTime -= Math.floor(elapsedTime / 1000);
+var diffSec;
+var diffMin;
+var timerInterval;
 
-        if (remainingTime <= 0) {
-            display.textContent = "00:00";
-            localStorage.removeItem('startTime');
-            localStorage.removeItem('remainingTime');
-            return;        }
+var hours;
+var minutes;
+var seconds;
+
+var fajrTime, dhuhrTime, asrTime, MaghribTime, ImsakTime;
+
+const apiURL =
+  "http://api.aladhan.com/v1/timingsByCity?city=Scarborough&country=Canada&method=2";
+
+fetch(apiURL)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
+    return response.json(); // Parse the response as JSON
+  })
+  .then((data) => {
+    // Access and use the retrieved data here
+    const status = data.status;
+    //fajrTime = string
+    fajrTime = data.data.timings.Fajr;
+    dhuhrTime = data.data.timings.Dhuhr;
+    asrTime = data.data.timings.Asr;
+    MaghribTime = data.data.timings.Maghrib;
+    ImsakTime = data.data.timings.Imsak;
+    dateReadable = data.data.date.readable;
 
-    var timerInterval = setInterval(function () {
-        minutes = Math.floor(remainingTime / 60);
-        seconds = remainingTime % 60;
+    const currentTime = new Date();
+    hours = currentTime.getHours();
+    minutes = currentTime.getMinutes();
+    const hoursLength = String(hours).length;
+    const minutesLength = String(minutes).length;
+    if (hoursLength == 1 && minutesLength == 1) {
+      hours = "0" + hours;
+      minutes = "0" + minutes;
+    } else if (hoursLength == 1) {
+      hours = "0" + hours;
+    } else if (minutesLength == 1) {
+      minutes = "0" + minutes;
+    }
+    currentHourAndMinute = String(hours) + ":" + String(minutes);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+    console.log("typeofhours", currentHourAndMinute, fajrTime);
 
-        display.textContent = minutes + ":" + seconds;
+    console.log("API Status: " + status);
+    console.log("Fajr Time: " + fajrTime);
+    console.log("dhuhrTime" + dhuhrTime);
+    console.log("asrTime", asrTime);
+    console.log("MaghribTime", MaghribTime);
+    console.log("Imsak", ImsakTime);
+    // Compare data.status with otherStatus
+    if (
+      currentHourAndMinute == fajrTime ||
+      currentHourAndMinute == dhuhrTime ||
+      currentHourAndMinute == asrTime ||
+      currentHourAndMinute == MaghribTime ||
+      currentHourAndMinute == ImsakTime
+    ) {
+      if (isRedirected == true) {
+      }
+      isRedirected = true;
+      console.log("Status matches otherStatus");
+      console.log("Timer Starts");
+      startTimer();
+    } else {
+      console.log("Status does not match otherStatus");
+    }
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 
-        if (remainingTime <= 0) {
-            clearInterval(timerInterval); // Stop the countdown when it reaches 0 or goes below 0.
-            localStorage.removeItem('startTime');
-            localStorage.removeItem('remainingTime');
-        } else {
-            remainingTime--;
-        }
-    }, 1000);
+function updateTimer() {
+  var startTime = localStorage.setItem("startTime", "a");
+  var remainingTime = localStorage.setItem("remainingTime", "b");
+  const currentTime = new Date();
+  hours = currentTime.getHours();
+  minutes = currentTime.getMinutes();
+  seconds = currentTime.getSeconds();
+
+  const prayHours = 12;
+  const prayMinutes = 2;
+  const praySeconds = 0;
+
+  diffSec = seconds - praySeconds;
+  diffMin = minutes - prayMinutes;
+  if (diffMin >= 15) {
+    diffSec = 0;
+    diffMin = 0;
+    document.getElementById("timer").textContent = "00:00";
+    //document.getElementById("timerFinished").textContent = "TIME IS UP!!!!!";
+    window.location.href = "timer.html";
+  } else {
+    document.getElementById("timer").textContent = diffMin + ":" + diffSec;
+  }
+}
+
+function startTimer() {
+  display = document.querySelector("#timer");
+
+  timerInterval = setInterval(updateTimer, 1000);
 }
 
 window.onload = function () {
-    var durationSeconds = 60 * 15; // 15 minutes
-    display = document.querySelector("#timer");
-    startTimer(durationSeconds, display);
+  startTimer();
 };
-
