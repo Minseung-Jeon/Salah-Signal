@@ -29,12 +29,15 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
       // If not whitelisted, check prayer times and redirect if needed
       if (!isWhitelisted) {
+        console.log(1);
+        var pasturl = url;
+        console.log(pasturl);
         const redirectionURL = chrome.runtime.getURL("redirect.html");
         chrome.tabs.update(tabId, {url: redirectionURL});
         /* try {
           const prayerTimesResponse = await fetchPrayerTimes("Scarborough", "Canada", 2);
           const currentPrayer = getCurrentPrayer(prayerTimesResponse.data.timings);
-
+          
           // Replace 'Fajr' with the prayer you want to check for redirection
           if (currentPrayer === 'Fajr') {
             const redirectionURL = chrome.runtime.getURL("redirect.html");
