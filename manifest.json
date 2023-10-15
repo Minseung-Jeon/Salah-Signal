@@ -10,16 +10,19 @@
       "48": "images/icon-48.png",
       "128": "images/icon-128.png"
     }, 
-    "author": "Naeem, Min, Rahma, Melanie",
+    "author": "Naeem, Min, Ramah, Melanie",
     "action": {
       "default_popup":"index.html",
       "default_title":"Salah Signal"
     }, "permissions": [
       "geolocation",
-      "tabs", "storage","activeTab"   
+      "tabs", "storage","activeTab"
+     
     ],
     "background":{
     "service_worker": "background.js",
     "type": "module"
-    }    
     }
+      
+    }
+  

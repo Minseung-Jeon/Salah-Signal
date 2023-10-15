@@ -14,7 +14,7 @@ function startTimer(duration, display) {
       
       if (timer <= 0) {
         clearInterval(countdown); // Stop the countdown when it reaches 0 or goes below 0.
-        stop;
+        stop;     
       } else {
         timer--;
       }
@@ -23,8 +23,8 @@ function startTimer(duration, display) {
   
   window.onload = function () {
     var durationMinutes = 3;
-    /* var durationSeconds = 60;
-    var durationMinutes = 15 * durationSeconds; */
+    var durationSeconds = 60;
+    var durationMinutes = 15 * durationSeconds; 
       display = document.querySelector("#timer");
     startTimer(durationMinutes, display);
   };
